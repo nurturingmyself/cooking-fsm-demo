@@ -4,7 +4,7 @@ import akka.actor.typed.ActorRef
 import cooking.manager.Reply
 
 sealed trait ChefMsg
-//case object AreYouDone extends ChefMsg
+case object AreYouDone extends ChefMsg
 final case class AreYouDone(
   replyTo: ActorRef[Reply] // for typed
 ) extends ChefMsg
