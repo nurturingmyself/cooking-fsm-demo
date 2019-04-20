@@ -6,22 +6,23 @@ import org.scalatest.{BeforeAndAfterAll, FeatureSpecLike, GivenWhenThen, Matcher
 import scala.concurrent.duration._
 
 class ChefTypedSpec
-  extends ActorTestKit
-  with FeatureSpecLike
+  extends FeatureSpecLike
   with GivenWhenThen
   with Matchers
   with BeforeAndAfterAll {
 
+  val testKit = ActorTestKit()
+  val sys = testKit.system
+
   override protected def afterAll(): Unit = {
-    shutdownTestKit()
+    testKit.shutdownTestKit()
   }
 
   feature("A chef can cook for customers") {
     ignore("a chef given insufficient ingredients stays cooking") {
-      val probe = TestProbe[ChefMsg]()
       val cookingSkill = DistractedNovice()
       val chefTemplate = new ChefTyped(5, cookingSkill)
-      val chef = spawn(chefTemplate.behavior)
+      val chef = testKit.spawn(chefTemplate.behavior)
 
       Given("only an insufficient amount of raw food")
       val ingredients = Ingredients(4)
@@ -30,9 +31,9 @@ class ChefTypedSpec
       chef ! ingredients // TODO with probe
 
       Then("the person should remain hungry")
-      system.scheduler.scheduleOnce(500.millis) {
+      sys.scheduler.scheduleOnce(500.millis) {
         // assert TODO
-      }(system.executionContext)
+      }(sys.executionContext)
 
       // not sure
       // testkit.returnedBehavior shouldBe hungryPersonTemplate.hungry(Data(9))
