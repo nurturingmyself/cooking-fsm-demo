@@ -1,6 +1,6 @@
 package cooking.chef
 
-import akka.actor.{ActorLogging, FSM}
+import akka.actor.{ ActorLogging, FSM }
 import akka.pattern._
 import cooking.chef.ChefSM.State
 import cooking.manager.Reply
@@ -15,8 +15,7 @@ object ChefSM {
   final case object Done extends State
 }
 
-class ChefSM(customers: Int, skill: CookingSkill)
-  extends FSM[State, Data] with ActorLogging {
+class ChefSM(customers: Int, skill: CookingSkill) extends FSM[State, Data] with ActorLogging {
 
   import ChefSM._
   implicit val ec: ExecutionContext =
@@ -46,11 +45,11 @@ class ChefSM(customers: Int, skill: CookingSkill)
       val newData = Data(data.served + servings)
       if (newData.served >= customers) {
         log.info("All fed.")
-        goto(Done) using newData
+        goto(Done).using(newData)
       } else {
         val remaining = customers - newData.served
         log.info("{} customers still hungry", remaining)
-        goto(Cooking) using newData
+        goto(Cooking).using(newData)
       }
     case Event(_: BurntFood, _) =>
       log.warning("I will not plate this food!")
@@ -73,8 +72,7 @@ class ChefSM(customers: Int, skill: CookingSkill)
 
   whenUnhandled {
     case Event(Status.Failure(cause), data) =>
-      log.warning("unhandled error while {} with {} customers served: {}",
-        stateName, data.served, cause)
+      log.warning("unhandled error while {} with {} customers served: {}", stateName, data.served, cause)
       stay
   }
 

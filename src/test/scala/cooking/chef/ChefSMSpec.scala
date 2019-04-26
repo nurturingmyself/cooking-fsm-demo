@@ -2,12 +2,9 @@ package cooking.chef
 
 import akka.actor.ActorSystem
 import akka.testkit.TestKit
-import org.scalatest.{FeatureSpecLike, GivenWhenThen}
+import org.scalatest.{ FeatureSpecLike, GivenWhenThen }
 
-class ChefSMSpec
-  extends TestKit(ActorSystem())
-  with FeatureSpecLike
-  with GivenWhenThen {
+class ChefSMSpec extends TestKit(ActorSystem()) with FeatureSpecLike with GivenWhenThen {
 
   feature("Testing Untyped FSM actor") {
     scenario("Chef starts in the Plating state and receives BurntFood") {

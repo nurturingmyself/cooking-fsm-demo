@@ -5,8 +5,7 @@ import cooking.manager.Reply
 
 sealed trait ChefMsg
 case object AreYouDone extends ChefMsg
-final case class AreYouDone(
-  replyTo: ActorRef[Reply] // for typed
+final case class AreYouDone(replyTo: ActorRef[Reply] // for typed
 ) extends ChefMsg
 
 sealed trait Food extends ChefMsg { def servings: Int }

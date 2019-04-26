@@ -1,27 +1,25 @@
 package cooking.chef
 
-import akka.actor.{ActorRef, ActorSystem, Props}
+import akka.actor.{ ActorRef, ActorSystem, Props }
 import akka.pattern.ask
-import akka.testkit.{ImplicitSender, TestKit}
+import akka.testkit.{ ImplicitSender, TestKit }
 import akka.util.Timeout
 import cooking.manager.Reply
 import org.scalatest._
 import org.scalatest.concurrent.Eventually
-import org.scalatest.time.{Millis, Span}
+import org.scalatest.time.{ Millis, Span }
 
 import scala.concurrent.duration._
 
-class ChefBasicSpec extends TestKit(ActorSystem())
-  with AsyncFeatureSpecLike
-  with GivenWhenThen
-  with Matchers
-  with Eventually
-  with ImplicitSender {
+class ChefBasicSpec
+    extends TestKit(ActorSystem())
+    with AsyncFeatureSpecLike
+    with GivenWhenThen
+    with Matchers
+    with Eventually
+    with ImplicitSender {
 
-  implicit val patience = PatienceConfig(
-    timeout = scaled(Span(450, Millis)),
-    interval = scaled(Span(25, Millis))
-  )
+  implicit val patience = PatienceConfig(timeout = scaled(Span(450, Millis)), interval = scaled(Span(25, Millis)))
 
   val cookingSkill = DistractedNovice()
 

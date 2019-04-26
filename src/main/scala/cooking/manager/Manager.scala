@@ -1,8 +1,8 @@
 package cooking.manager
 
-import akka.actor.{Actor, ActorLogging, ActorRef, Timers}
+import akka.actor.{ Actor, ActorLogging, ActorRef, Timers }
 import akka.util.Timeout
-import akka.pattern.{ask, pipe}
+import akka.pattern.{ ask, pipe }
 import cooking.chef.AreYouDone
 
 import scala.concurrent.duration._

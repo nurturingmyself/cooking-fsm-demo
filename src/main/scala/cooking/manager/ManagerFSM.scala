@@ -1,7 +1,7 @@
 package cooking.manager
 
-import akka.actor.FSM.{CurrentState, SubscribeTransitionCallBack, Transition, UnsubscribeTransitionCallBack}
-import akka.actor.{Actor, ActorLogging, ActorRef}
+import akka.actor.FSM.{ CurrentState, SubscribeTransitionCallBack, Transition, UnsubscribeTransitionCallBack }
+import akka.actor.{ Actor, ActorLogging, ActorRef }
 import cooking.chef.ChefSM
 
 class ManagerFSM() extends Actor with ActorLogging {

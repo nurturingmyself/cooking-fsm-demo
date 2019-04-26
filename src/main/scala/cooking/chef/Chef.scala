@@ -1,14 +1,13 @@
 package cooking.chef
 
-import akka.actor.{Actor, ActorLogging}
+import akka.actor.{ Actor, ActorLogging }
 import akka.pattern._
 import cooking.manager.Reply
 
 import scala.concurrent.ExecutionContext
 import scala.language.postfixOps
 
-class Chef(customers: Int, skill: CookingSkill)
-  extends Actor with ActorLogging {
+class Chef(customers: Int, skill: CookingSkill) extends Actor with ActorLogging {
 
   implicit val ec: ExecutionContext =
     context.system.dispatcher

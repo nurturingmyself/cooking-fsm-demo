@@ -1,6 +1,6 @@
-import akka.actor.{ActorSystem, Props}
+import akka.actor.{ ActorSystem, Props }
 import cooking.chef._
-import cooking.manager.{Introduce, Manager, ManagerFSM}
+import cooking.manager.{ Introduce, Manager, ManagerFSM }
 
 import scala.concurrent.duration._
 

@@ -1,15 +1,11 @@
 package cooking.chef
 
-import akka.actor.testkit.typed.scaladsl.{ActorTestKit, BehaviorTestKit, TestProbe}
-import org.scalatest.{BeforeAndAfterAll, FeatureSpecLike, GivenWhenThen, Matchers}
+import akka.actor.testkit.typed.scaladsl.{ ActorTestKit, BehaviorTestKit, TestProbe }
+import org.scalatest.{ BeforeAndAfterAll, FeatureSpecLike, GivenWhenThen, Matchers }
 
 import scala.concurrent.duration._
 
-class ChefTypedSpec
-  extends FeatureSpecLike
-  with GivenWhenThen
-  with Matchers
-  with BeforeAndAfterAll {
+class ChefTypedSpec extends FeatureSpecLike with GivenWhenThen with Matchers with BeforeAndAfterAll {
 
   val testKit = ActorTestKit()
   val sys = testKit.system
